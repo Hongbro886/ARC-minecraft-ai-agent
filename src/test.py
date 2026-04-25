@@ -1,0 +1,32 @@
+import os
+from openai import OpenAI
+
+# 从环境变量中获取您的API KEY，配置方法见：https://www.volcengine.com/docs/82379/1399008
+api_key = 'ark-158b1959-2f39-4ff7-b2dc-5f7953bb15ff-eefaf'
+
+client = OpenAI(
+    base_url="https://ark.cn-beijing.volces.com/api/v3",
+    api_key=api_key,
+)
+
+response = client.responses.create(
+    model="doubao-seed-2-0-lite-260215",
+    input=[
+        {
+            "role": "user",
+            "content": [
+
+                {
+                    "type": "input_image",
+                    "image_url": "https://ark-project.tos-cn-beijing.volces.com/doc_image/ark_demo_img_1.png"
+                },
+                {
+                    "type": "input_text",
+                    "text": "你看见了什么？"
+                },
+            ],
+        }
+    ]
+)
+
+print(response)
